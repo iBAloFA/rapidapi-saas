@@ -1,0 +1,21 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = []
+}
+
+model ApiUsageLog {
+  id            String   @id @default(uuid())
+  endpoint      String   
+  rapidUserId   String?  
+  requestIp     String
+  status        Int      
+  executionTime Int      
+  createdAt     DateTime @default(now())
+
+  @@index([endpoint])
+  @@index([rapidUserId])
+}
